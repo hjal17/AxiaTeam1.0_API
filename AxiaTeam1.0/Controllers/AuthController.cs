@@ -28,7 +28,7 @@ namespace AxiaTeam1._0.Controllers
         public IActionResult Register(RegisterDto dto)
         {
 
-            var user = new User {
+            var user = new Models.User {
                 Name = dto.Name,
                 Email = dto.Email,
                 Password = BCrypt.Net.BCrypt.HashPassword(dto.Password) };

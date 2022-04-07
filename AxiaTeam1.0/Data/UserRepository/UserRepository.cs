@@ -14,7 +14,7 @@ namespace AxiaTeam1._0.Data
             _context = context;
         }
 
-        public User Create(User user)
+        public Models.User Create(Models.User user)
         {
             _context.Users.Add(user);
             user.Id = _context.SaveChanges();
@@ -22,12 +22,12 @@ namespace AxiaTeam1._0.Data
             return user;
         }
 
-        public User GetByEmail(string email)
+        public Models.User GetByEmail(string email)
         {
             return _context.Users.FirstOrDefault(u => u.Email == email);
         }
 
-        public User GetById(int id)
+        public Models.User GetById(int id)
         {
             return _context.Users.FirstOrDefault(u => u.Id == id);
         }

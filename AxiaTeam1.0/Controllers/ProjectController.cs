@@ -24,6 +24,8 @@ namespace AxiaTeam1._0.Controllers
         public ActionResult Project(int id)
         {
             var project = _projectRepository.Get(id);
+            if (project == null)
+                return NotFound();
             return Ok(project);
         }
 

@@ -13,6 +13,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using AxiaTeam1._0.Helpers;
+using AxiaTeam1._0.Data.Tache;
 
 namespace AxiaTeam1._0
 {
@@ -34,6 +35,7 @@ namespace AxiaTeam1._0
             services.AddControllers();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IProjectRepository, ProjectRepository>();
+            services.AddScoped<ITacheRepository, TacheRepository>();
 
             services.AddScoped<JwtService>();
         }

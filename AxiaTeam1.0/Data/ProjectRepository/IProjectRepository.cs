@@ -6,10 +6,13 @@ using System.Threading.Tasks;
 
 namespace AxiaTeam1._0.Data
 {
-     public interface IUserRepository
+   public interface IProjectRepository
     {
-        User Create(User user);
-        User GetByEmail(string email);
-        User GetById(int id);
+        Project create(Project p);
+        Project Get(int id);
+       List< Project> GetAll();
+
+
+        
     }
 }

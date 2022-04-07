@@ -13,12 +13,13 @@ namespace AxiaTeam1._0.Data
         {
 
         }
-        public DbSet<User> Users { get; set; }
+        public DbSet<Models.User> Users { get; set; }
         public DbSet<Project> Projects { get; set; }
-
+        public DbSet<TTache> Taches { get; set; }
+        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>(entity => { entity.HasIndex(e => e.Email).IsUnique(); });
+            modelBuilder.Entity<Models.User>(entity => { entity.HasIndex(e => e.Email).IsUnique(); });
         }
     }
 }
