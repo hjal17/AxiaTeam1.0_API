@@ -12,7 +12,7 @@ using AxiaTeam1._0.Helpers;
 
 namespace AxiaTeam1._0.Controllers
 {
-    [Route("api")]
+    [Route("api/auth")]
     [ApiController]
     public class AuthController : ControllerBase
     {

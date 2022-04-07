@@ -29,9 +29,12 @@ namespace AxiaTeam1._0
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors();
-            services.AddDbContext<UserContext>(opt =>opt.UseSqlServer(Configuration.GetConnectionString("Default")));
+            services.AddDbContext<DataContext>(opt =>opt.UseSqlServer(Configuration.GetConnectionString("Default")));
+           
             services.AddControllers();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IProjectRepository, ProjectRepository>();
+
             services.AddScoped<JwtService>();
         }
 

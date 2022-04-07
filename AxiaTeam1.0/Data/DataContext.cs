@@ -7,13 +7,14 @@ using System.Threading.Tasks;
 
 namespace AxiaTeam1._0.Data
 {
-    public class UserContext :DbContext
+    public class DataContext :DbContext
     {
-        public UserContext(DbContextOptions<UserContext> options) : base(options)
+        public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
 
         }
         public DbSet<User> Users { get; set; }
+        public DbSet<Project> Projects { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

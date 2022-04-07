@@ -8,8 +8,8 @@ namespace AxiaTeam1._0.Data
 {
     public class UserRepository : IUserRepository
     {
-        private readonly UserContext _context;
-        public UserRepository(UserContext context)
+        private readonly DataContext _context;
+        public UserRepository(DataContext context)
         {
             _context = context;
         }
