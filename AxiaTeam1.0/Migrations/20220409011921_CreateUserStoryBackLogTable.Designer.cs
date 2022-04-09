@@ -4,14 +4,16 @@ using AxiaTeam1._0.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AxiaTeam1._0.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class UserContextModelSnapshot : ModelSnapshot
+    [Migration("20220409011921_CreateUserStoryBackLogTable")]
+    partial class CreateUserStoryBackLogTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -29,15 +31,10 @@ namespace AxiaTeam1._0.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ProjectId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Version")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ProjectId");
 
                     b.ToTable("BackLogs");
                 });
@@ -64,15 +61,10 @@ namespace AxiaTeam1._0.Migrations
                     b.Property<string>("TempEstimer")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Version")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Projects");
                 });
@@ -108,15 +100,10 @@ namespace AxiaTeam1._0.Migrations
                     b.Property<string>("TempEstimer")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UserStoryId")
-                        .HasColumnType("int");
-
                     b.Property<int>("status")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("UserStoryId");
 
                     b.ToTable("Taches");
                 });
@@ -173,33 +160,6 @@ namespace AxiaTeam1._0.Migrations
                     b.HasIndex("BackLogId");
 
                     b.ToTable("UserStorys");
-                });
-
-            modelBuilder.Entity("AxiaTeam1._0.Models.BackLog", b =>
-                {
-                    b.HasOne("AxiaTeam1._0.Models.Project", "Project")
-                        .WithMany()
-                        .HasForeignKey("ProjectId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("AxiaTeam1._0.Models.Project", b =>
-                {
-                    b.HasOne("AxiaTeam1._0.Models.User", "User")
-                        .WithMany("Projects")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("AxiaTeam1._0.Models.TTache", b =>
-                {
-                    b.HasOne("AxiaTeam1._0.Models.UserStory", "UserStory")
-                        .WithMany("Taches")
-                        .HasForeignKey("UserStoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("AxiaTeam1._0.Models.UserStory", b =>

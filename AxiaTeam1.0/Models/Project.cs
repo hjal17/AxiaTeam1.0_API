@@ -14,5 +14,8 @@ namespace AxiaTeam1._0.Models
         public DateTime DateDebut { get; set; }
         public DateTime DateLimite { get; set; }
         public string TempEstimer { get; set; }
+
+        public int UserId { get; set; }
+        public User User { get; set; }
     }
 }

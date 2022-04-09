@@ -19,5 +19,8 @@ namespace AxiaTeam1._0.Models
         public int Avancement { get; set; }
         public string TempEstimer { get; set; }
 
+        public int UserStoryId { get; set; }
+        public UserStory UserStory { get; set; }
+
     }
 }

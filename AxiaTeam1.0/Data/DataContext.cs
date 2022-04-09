@@ -16,10 +16,18 @@ namespace AxiaTeam1._0.Data
         public DbSet<Models.User> Users { get; set; }
         public DbSet<Project> Projects { get; set; }
         public DbSet<TTache> Taches { get; set; }
-        
+        public DbSet<UserStory> UserStorys { get; set; }
+
+        public DbSet<BackLog> BackLogs { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Models.User>(entity => { entity.HasIndex(e => e.Email).IsUnique(); });
+
+            modelBuilder.Entity<UserStory>().HasOne(u => u.BackLog).WithMany(b => b.UserStory);
+
+            modelBuilder.Entity<TTache>().HasOne(t => t.UserStory).WithMany(u => u.Taches);
+
+            modelBuilder.Entity<Project>().HasOne(p => p.User).WithMany(u => u.Projects);
         }
     }
 }
