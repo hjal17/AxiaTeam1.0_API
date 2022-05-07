@@ -15,7 +15,7 @@ namespace AxiaTeam1._0.Models
         public string  Periority { get; set; }
         public DateTime DateDebut { get; set; }
         public DateTime DateLimite { get; set; }
-        public int MyProperty { get; set; }
+     
         public int Avancement { get; set; }
         public string TempEstimer { get; set; }
 

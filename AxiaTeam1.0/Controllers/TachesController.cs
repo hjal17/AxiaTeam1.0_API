@@ -51,7 +51,9 @@ namespace AxiaTeam1._0.Controllers
                 DateDebut = t.DateDebut,
                 DateLimite = t.DateLimite,
                 Avancement = t.Avancement,
-                TempEstimer = t.TempEstimer
+                TempEstimer = t.TempEstimer,
+                UserStoryId = t.UserStoryId
+                
             };
             return Created("succes ", _tacheRepository.Create(tache));
         }

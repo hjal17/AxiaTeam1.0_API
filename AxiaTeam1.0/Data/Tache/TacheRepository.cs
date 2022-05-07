@@ -22,8 +22,8 @@ namespace AxiaTeam1._0.Data.Tache
 
         public TTache Get(int id)
         {
-            var tache = _tacheContext.Taches.FirstOrDefault(t => t.Id == id);
-            return tache;
+            return _tacheContext.Taches.FirstOrDefault(t => t.Id == id);
+            
         }
 
         public List<TTache> GetAll()

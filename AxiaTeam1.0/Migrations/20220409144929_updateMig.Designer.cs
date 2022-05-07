@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AxiaTeam1._0.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220409020009_updateMigrationUserproject")]
-    partial class updateMigrationUserproject
+    [Migration("20220409144929_updateMig")]
+    partial class updateMig
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

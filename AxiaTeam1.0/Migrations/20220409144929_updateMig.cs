@@ -2,7 +2,7 @@
 
 namespace AxiaTeam1._0.Migrations
 {
-    public partial class updateMigrationUserproject : Migration
+    public partial class updateMig : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -12,11 +12,7 @@ namespace AxiaTeam1._0.Migrations
                 nullable: false,
                 defaultValue: 0);
 
-            migrationBuilder.AddColumn<int>(
-                name: "UserId",
-                table: "Projects",
-                nullable: false,
-                defaultValue: 0);
+         
 
             migrationBuilder.AddColumn<int>(
                 name: "ProjectId",
@@ -29,10 +25,6 @@ namespace AxiaTeam1._0.Migrations
                 table: "Taches",
                 column: "UserStoryId");
 
-            migrationBuilder.CreateIndex(
-                name: "IX_Projects_UserId",
-                table: "Projects",
-                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_BackLogs_ProjectId",
@@ -47,13 +39,7 @@ namespace AxiaTeam1._0.Migrations
                 principalColumn: "Id",
                 onDelete: ReferentialAction.Cascade);
 
-            migrationBuilder.AddForeignKey(
-                name: "FK_Projects_Users_UserId",
-                table: "Projects",
-                column: "UserId",
-                principalTable: "Users",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
+           
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Taches_UserStorys_UserStoryId",
@@ -70,9 +56,7 @@ namespace AxiaTeam1._0.Migrations
                 name: "FK_BackLogs_Projects_ProjectId",
                 table: "BackLogs");
 
-            migrationBuilder.DropForeignKey(
-                name: "FK_Projects_Users_UserId",
-                table: "Projects");
+         
 
             migrationBuilder.DropForeignKey(
                 name: "FK_Taches_UserStorys_UserStoryId",
@@ -82,9 +66,7 @@ namespace AxiaTeam1._0.Migrations
                 name: "IX_Taches_UserStoryId",
                 table: "Taches");
 
-            migrationBuilder.DropIndex(
-                name: "IX_Projects_UserId",
-                table: "Projects");
+     
 
             migrationBuilder.DropIndex(
                 name: "IX_BackLogs_ProjectId",
@@ -94,9 +76,6 @@ namespace AxiaTeam1._0.Migrations
                 name: "UserStoryId",
                 table: "Taches");
 
-            migrationBuilder.DropColumn(
-                name: "UserId",
-                table: "Projects");
 
             migrationBuilder.DropColumn(
                 name: "ProjectId",

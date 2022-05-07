@@ -9,6 +9,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using BCrypt;
 using AxiaTeam1._0.Helpers;
+using System.Security.Claims;
 
 namespace AxiaTeam1._0.Controllers
 {
@@ -16,6 +17,7 @@ namespace AxiaTeam1._0.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
+        
         private readonly IUserRepository _repository ;
         private readonly JwtService _jwtService;
         public AuthController(IUserRepository repository, JwtService jwtService)
@@ -52,8 +54,9 @@ namespace AxiaTeam1._0.Controllers
             }
 
             var jwt = _jwtService.generate(user.Id);
-
+            Response.Cookies.Append("user", "hjalk", new CookieOptions { HttpOnly = true });
             Response.Cookies.Append("jwt", jwt, new CookieOptions { HttpOnly = true });
+            //HttpContext.Session.SetString("login","yes");
 
 
             return Ok(new
