@@ -54,9 +54,8 @@ namespace AxiaTeam1._0.Controllers
             }
 
             var jwt = _jwtService.generate(user.Id);
-            Response.Cookies.Append("user", "hjalk", new CookieOptions { HttpOnly = true });
             Response.Cookies.Append("jwt", jwt, new CookieOptions { HttpOnly = true });
-            //HttpContext.Session.SetString("login","yes");
+           
 
 
             return Ok(new

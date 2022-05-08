@@ -1,4 +1,5 @@
 ﻿using AxiaTeam1._0.Data;
+using AxiaTeam1._0.Helpers;
 using AxiaTeam1._0.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -17,16 +18,18 @@ namespace AxiaTeam1._0.Controllers
     public class ProjectController : ControllerBase
     { 
         private readonly IProjectRepository _projectRepository;
-        
-      
-        
-      
+        private readonly IUserRepository _repository;
+        private readonly JwtService _jwtService;
 
 
-        public ProjectController( IProjectRepository projectRepository) 
+
+
+
+        public ProjectController( IProjectRepository projectRepository, IUserRepository repository, JwtService jwtService) 
         {
             _projectRepository = projectRepository;
-          
+            _repository = repository;
+            _jwtService = jwtService;
 
         }
 
@@ -45,8 +48,9 @@ namespace AxiaTeam1._0.Controllers
         [HttpPost("create")]
         public async Task<IActionResult> Create(Project p)
         {
-         
-
+            var jwt = Request.Cookies["jwt"];
+            var token = _jwtService.Verify(jwt);
+            int userId = int.Parse(token.Issuer);
             var project = new Project
             {
                 Name = p.Name,
@@ -55,7 +59,7 @@ namespace AxiaTeam1._0.Controllers
                 DateDebut = p.DateDebut,
                 DateLimite = p.DateLimite,
                 TempEstimer = p.TempEstimer,
-                 UserId =  2
+                UserId = userId
 
         };
            
