@@ -33,8 +33,13 @@ namespace AxiaTeam1._0.Controllers
             var user = new Models.User {
                 Name = dto.Name,
                 Email = dto.Email,
-                Password = BCrypt.Net.BCrypt.HashPassword(dto.Password) };
-            
+                Password = BCrypt.Net.BCrypt.HashPassword(dto.Password)
+            };
+            if (dto.Role != null)
+            {
+                user.Role = dto.Role;
+            }
+                
 
             return Created("succes", _repository.Create(user));
 
@@ -94,6 +99,103 @@ namespace AxiaTeam1._0.Controllers
             Response.Cookies.Delete("jwt");
 
             return Ok(new { message ="succes logout" });
+        }
+
+
+      
+
+        [HttpGet("users")]
+        public IActionResult allUsers()
+        {
+            try
+            {
+                var jwt = Request.Cookies["jwt"];
+
+                var token = _jwtService.Verify(jwt);
+
+                int userId = int.Parse(token.Issuer);
+
+                var users = _repository.getAll(userId);
+
+                return Ok(users);
+            }
+            catch (Exception e)
+            {
+                return Unauthorized();
+            }
+
+        }
+
+
+        [HttpPut("edit/{id}")]
+        public IActionResult updateUser(int id, User user)
+        {
+            try
+            {
+                if (id != user.Id)
+                    return BadRequest("user ID mismatch");
+
+                var userToUpdate =  _repository.GetById(id);
+
+                if (userToUpdate == null)
+                    return NotFound($"user with Id = {id} not found");
+
+                return  Ok(_repository.editUser(user));
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    "Error updating data");
+            }
+
+        }
+
+        [HttpPut("editpassword/{id}")]
+        public IActionResult updatePassord(int id, User user)
+        {
+            try
+            {
+                if (id != user.Id)
+                    return BadRequest("user ID mismatch");
+
+                var userToUpdate = _repository.GetById(id);
+
+                if (userToUpdate == null)
+                    return NotFound($"user with Id = {id} not found");
+
+                return Ok(_repository.editPassword(user));
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    "Error updating data");
+            }
+
+
+        }
+
+
+
+        [HttpDelete("{id}")]
+        public IActionResult DeleteUser(int id)
+        {
+            try
+            {
+                var userToDelete = _repository.GetById(id);
+
+                if (userToDelete == null)
+                {
+                    return NotFound($"user with Id = {id} not found");
+                }
+                _repository.Delete(id);
+
+                return Ok(new { message = "succes" });
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    "Error deleting data");
+            }
         }
 
 

@@ -20,6 +20,7 @@ using AxiaTeam1._0.Data.Middlware;
 using AxiaTeam1._0.Models;
 using AxiaTeam1._0.Data.BackLogRepository;
 using AxiaTeam1._0.Data.UserStoryRepository;
+using AxiaTeam1._0.Data.ClientRepository;
 
 namespace AxiaTeam1._0
 {
@@ -45,6 +46,7 @@ namespace AxiaTeam1._0
           
             services.AddControllers();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IClientRepository, ClientRepository>();
             services.AddScoped<IProjectRepository, ProjectRepository>();
             services.AddScoped<ITacheRepository, TacheRepository>();
             services.AddScoped<IBackLogRepository, BackLogRepository>();

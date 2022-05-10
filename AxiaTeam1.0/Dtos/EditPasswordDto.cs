@@ -5,11 +5,9 @@ using System.Threading.Tasks;
 
 namespace AxiaTeam1._0.Dtos
 {
-    public class RegisterDto
+    public class EditPasswordDto
     {
-        public String Name { get; set; }
+        public int id { get; set; }
         public String Password { get; set; }
-        public String Email { get; set; }
-        public String Role { get; set; }
     }
 }

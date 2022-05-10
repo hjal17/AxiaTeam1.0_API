@@ -17,6 +17,8 @@ namespace AxiaTeam1._0.Data
         public DbSet<Project> Projects { get; set; }
         public DbSet<TTache> Taches { get; set; }
         public DbSet<UserStory> UserStorys { get; set; }
+        public DbSet<Client> Clients { get; set; }
+
 
         public DbSet<BackLog> BackLogs { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -28,6 +30,9 @@ namespace AxiaTeam1._0.Data
             modelBuilder.Entity<TTache>().HasOne(t => t.UserStory).WithMany(u => u.Taches);
 
             modelBuilder.Entity<Project>().HasOne(p => p.User).WithMany(u => u.Projects);
+            modelBuilder.Entity<Project>().HasOne(p => p.Client).WithMany(c => c.Projects);
+
+
         }
     }
 }
