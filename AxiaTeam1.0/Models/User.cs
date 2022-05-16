@@ -16,5 +16,10 @@ namespace AxiaTeam1._0.Models
         [JsonIgnore] public string Password { get; set; }
 
         public List<Project> Projects { get; set; }
+        public List<TacheAFait> tacheAFait { get; set; }
+
+
+        public ICollection<EmployeeEquipe> employeeEquipes { get; set; }
+
     }
 }

@@ -4,14 +4,16 @@ using AxiaTeam1._0.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AxiaTeam1._0.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class UserContextModelSnapshot : ModelSnapshot
+    [Migration("20220513094134_createTacheaFaitTable")]
+    partial class createTacheaFaitTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -76,36 +78,6 @@ namespace AxiaTeam1._0.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Clients");
-                });
-
-            modelBuilder.Entity("AxiaTeam1._0.Models.EmployeeEquipe", b =>
-                {
-                    b.Property<int>("userId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("EquipeId")
-                        .HasColumnType("int");
-
-                    b.HasKey("userId", "EquipeId");
-
-                    b.HasIndex("EquipeId");
-
-                    b.ToTable("employeeEquipes");
-                });
-
-            modelBuilder.Entity("AxiaTeam1._0.Models.Equipe", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("equipes");
                 });
 
             modelBuilder.Entity("AxiaTeam1._0.Models.Project", b =>
@@ -270,21 +242,6 @@ namespace AxiaTeam1._0.Migrations
                     b.HasOne("AxiaTeam1._0.Models.Project", "Project")
                         .WithMany()
                         .HasForeignKey("ProjectId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("AxiaTeam1._0.Models.EmployeeEquipe", b =>
-                {
-                    b.HasOne("AxiaTeam1._0.Models.Equipe", "equipe")
-                        .WithMany("employeeEquipes")
-                        .HasForeignKey("EquipeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("AxiaTeam1._0.Models.User", "user")
-                        .WithMany("employeeEquipes")
-                        .HasForeignKey("userId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

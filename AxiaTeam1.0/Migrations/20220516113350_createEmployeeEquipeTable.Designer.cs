@@ -4,14 +4,16 @@ using AxiaTeam1._0.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AxiaTeam1._0.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class UserContextModelSnapshot : ModelSnapshot
+    [Migration("20220516113350_createEmployeeEquipeTable")]
+    partial class createEmployeeEquipeTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -105,7 +107,7 @@ namespace AxiaTeam1._0.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("equipes");
+                    b.ToTable("Equipe");
                 });
 
             modelBuilder.Entity("AxiaTeam1._0.Models.Project", b =>

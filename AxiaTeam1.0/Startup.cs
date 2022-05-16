@@ -21,6 +21,7 @@ using AxiaTeam1._0.Models;
 using AxiaTeam1._0.Data.BackLogRepository;
 using AxiaTeam1._0.Data.UserStoryRepository;
 using AxiaTeam1._0.Data.ClientRepository;
+using AxiaTeam1._0.Data.EquipeRepository;
 
 namespace AxiaTeam1._0
 {
@@ -51,10 +52,10 @@ namespace AxiaTeam1._0
             services.AddScoped<ITacheRepository, TacheRepository>();
             services.AddScoped<IBackLogRepository, BackLogRepository>();
             services.AddScoped<IUserStoryRepository, UserStoryRepository>();
+            services.AddScoped<IEquipeRepository, EquipeRepository>();
             services.AddScoped<JwtService>();
 
-            //  services.AddIdentity<ApplicationUser, IdentityRole>();
-            //services.AddIdentity<IdentityUser, IdentityRole>();
+            
            
         }
 
