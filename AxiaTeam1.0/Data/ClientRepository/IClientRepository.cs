@@ -12,8 +12,9 @@ namespace AxiaTeam1._0.Data
         Models.Client GetById(int id);
         List<Models.Client> getAll();
         Models.Client EditClient(Models.Client client);
-
         void Delete(int id);
+
+       List< Project> getClientProject(int clientId);
        
         
     }

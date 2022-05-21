@@ -64,5 +64,10 @@ namespace AxiaTeam1._0.Data.ClientRepository
             return _clientContext.Clients.FirstOrDefault(c => c.Id == id);
             
         }
+
+        public List< Project> getClientProject(int clientId)
+        {
+            return _clientContext.Projects.Where(p => p.ClientId == clientId).ToList();
+        }
     }
 }

@@ -37,16 +37,36 @@ namespace AxiaTeam1._0.Controllers
 
             var backLog = new BackLog
             {
-               Version = b.Version,
-               Description = b.Description,
-               ProjectId = b.ProjectId
+                Version = b.Version,
+                Description = b.Description,
+                ProjectId = b.ProjectId
 
             };
 
             return Created("succes ", _backlogRepository.create(backLog));
         }
 
-        
-      
+        [HttpPut("edit/{id}")]
+        public IActionResult updateUser(int id, BackLog b)
+        {
+            try
+            {
+                if (id != b.Id)
+                    return BadRequest("user ID mismatch");
+
+                var userToUpdate = _backlogRepository.Get(id);
+
+                if (userToUpdate == null)
+                    return NotFound($"backlog with Id = {id} not found");
+
+                return Ok(_backlogRepository.editBackLog(b));
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    "Error updating data");
+            }
+
+        }
     }
 }

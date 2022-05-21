@@ -113,6 +113,13 @@ namespace AxiaTeam1._0.Controllers
                     "Error deleting data");
             }
         }
+        [HttpGet("{id}/projects")]
+
+        public IActionResult getClientProjects(int id)
+        {
+            var projects = _repository.getClientProject(id);
+            return Ok(projects);
+        }
 
     }
 }

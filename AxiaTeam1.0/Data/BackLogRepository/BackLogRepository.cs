@@ -22,6 +22,19 @@ namespace AxiaTeam1._0.Data.BackLogRepository
             return b;
         }
 
+        public BackLog editBackLog(BackLog newBacklog)
+        {
+            var backLog = _backLogContext.BackLogs.FirstOrDefault(b => b.Id == newBacklog.Id);
+            if (!(newBacklog.Description is null) && !(newBacklog.Description == backLog.Description))
+                backLog.Description = newBacklog.Description;
+            if (!(newBacklog.Version is null) && !(newBacklog.Version == backLog.Version))
+                backLog.Version = newBacklog.Version;
+
+           
+            _backLogContext.SaveChanges();
+            return backLog;
+        }
+
         public BackLog Get(int id)
         {
             return _backLogContext.BackLogs.FirstOrDefault(b => b.Id == id);

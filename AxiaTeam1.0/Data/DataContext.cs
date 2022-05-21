@@ -25,6 +25,7 @@ namespace AxiaTeam1._0.Data
         public DbSet<BackLog> BackLogs { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Models.User>(entity => { entity.HasIndex(e => e.Email).IsUnique(); });
 
             modelBuilder.Entity<UserStory>().HasOne(u => u.BackLog).WithMany(b => b.UserStory);
@@ -36,9 +37,16 @@ namespace AxiaTeam1._0.Data
             modelBuilder.Entity<Project>().HasOne(p => p.Client).WithMany(c => c.Projects);
 
             //Relation equipe-developpeur
-            modelBuilder.Entity<EmployeeEquipe>().HasKey(Ee => new { Ee.userId, Ee.EquipeId });
-            modelBuilder.Entity<EmployeeEquipe>().HasOne(Ee => Ee.user).WithMany(u => u.employeeEquipes).HasForeignKey(Ee => Ee.userId);
-            modelBuilder.Entity<EmployeeEquipe>().HasOne(Ee => Ee.equipe).WithMany(e => e.employeeEquipes).HasForeignKey(Ee => Ee.EquipeId);
+                modelBuilder.Entity<EmployeeEquipe>().HasKey(Ee => new { Ee.userId, Ee.EquipeId });
+             modelBuilder.Entity<EmployeeEquipe>().HasOne(Ee => Ee.user).WithMany(u => u.EmployeeEquipes).HasForeignKey(Ee => Ee.userId);
+             modelBuilder.Entity<EmployeeEquipe>().HasOne(Ee => Ee.equipe).WithMany(e => e.EmployeeEquipes).HasForeignKey(Ee => Ee.EquipeId);
+          
+
+          
+
+
+
+
         }
     }
 }

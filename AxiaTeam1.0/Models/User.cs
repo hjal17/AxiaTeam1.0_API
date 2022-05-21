@@ -8,6 +8,7 @@ namespace AxiaTeam1._0.Models
 {
     public class User
     {
+       
         public int Id { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
@@ -19,7 +20,7 @@ namespace AxiaTeam1._0.Models
         public List<TacheAFait> tacheAFait { get; set; }
 
 
-        public ICollection<EmployeeEquipe> employeeEquipes { get; set; }
+        public  ICollection<EmployeeEquipe> EmployeeEquipes { get; set; }
 
     }
 }

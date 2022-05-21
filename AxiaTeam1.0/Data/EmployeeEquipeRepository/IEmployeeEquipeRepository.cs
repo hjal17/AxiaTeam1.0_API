@@ -6,9 +6,12 @@ using System.Threading.Tasks;
 
 namespace AxiaTeam1._0.Data.EmployeeEquipeRepository
 {
-    interface IEmployeeEquipeRepository
+   public interface IEmployeeEquipeRepository
     {
-        EmployeeEquipe create(EmployeeEquipe e);
-       
+      EmployeeEquipe create(EmployeeEquipe e);
+        public List<User> getEquipeMembre(int equipeId);
+        public List<Equipe> getUserEquipe(int userId);
+        public EmployeeEquipe changeEmployeeEquipe(int employeeId,int EquipeId, int newEquipeId);
+        public void DeleteEmployeFromEquipe(int employeeId,int equipeId);
     }
 }
