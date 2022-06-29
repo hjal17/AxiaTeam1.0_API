@@ -11,8 +11,9 @@ namespace AxiaTeam1._0.Data
         Project create(Project p);
         Project Get(int id);
        List< Project> GetAll();
+        void Delete(int id);
 
 
-        
+
     }
 }

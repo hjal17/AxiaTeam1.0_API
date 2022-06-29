@@ -50,10 +50,10 @@ namespace AxiaTeam1._0.Controllers
             return Created("succes ", _userStoryRepository.create(userStory));
         }
 
-        [HttpGet]
-        public ActionResult getAll()
+        [HttpGet("backlog/{id}")]
+        public ActionResult getAll(int id)
         {
-            var project = _userStoryRepository.GetAll();
+            var project = _userStoryRepository.GetAll(id);
             return Ok(project);
         }
     }

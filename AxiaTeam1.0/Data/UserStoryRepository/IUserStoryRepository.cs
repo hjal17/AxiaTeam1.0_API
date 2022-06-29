@@ -10,7 +10,8 @@ namespace AxiaTeam1._0.Data
     {
         UserStory create(UserStory us);
         UserStory Get(int id);
-        List<UserStory> GetAll();
+        List<UserStory> GetAll(int backlogId);
 
+        UserStory edit(UserStory us);
     }
 }

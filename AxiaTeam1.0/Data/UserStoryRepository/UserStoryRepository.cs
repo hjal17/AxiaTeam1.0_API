@@ -21,15 +21,30 @@ namespace AxiaTeam1._0.Data.UserStoryRepository
             return us;
         }
 
+        public UserStory edit(UserStory us)
+        {
+            var userStory = _userstoryContext.UserStorys.FirstOrDefault(u => u.Id == us.Id);
+            if (!(us.Name is null) && !(us.Name == userStory.Name))
+                userStory.Name = us.Name;
+            if (!(us.Description is null) && !(us.Description == userStory.Description))
+                userStory.Description = us.Description;
+
+            if (!(us.TemEstimer is null) && !(us.TemEstimer == userStory.TemEstimer))
+                userStory.TemEstimer = us.Description;
+            _userstoryContext.SaveChanges();
+            return userStory;
+        }
+
         public UserStory Get(int id)
         {
             return _userstoryContext.UserStorys.FirstOrDefault(us => us.Id == id);
            
         }
 
-        public List<UserStory> GetAll()
+        public List<UserStory> GetAll(int backLogId)
         {
-            return _userstoryContext.UserStorys.ToList();
+            return _userstoryContext.UserStorys.Where(us=>us.BackLogId==backLogId).ToList();
+
         }
     }
 }

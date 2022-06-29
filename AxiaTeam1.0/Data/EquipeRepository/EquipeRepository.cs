@@ -28,7 +28,7 @@ namespace AxiaTeam1._0.Data.EquipeRepository
             _equipeContext.SaveChanges();
         }
 
-        public Equipe EditClient(Equipe _equipe)
+        public Equipe editEquipe(Equipe _equipe)
         {
             var equipe = _equipeContext.equipes.FirstOrDefault(e => e.Id == _equipe.Id);
             equipe.name = _equipe.name;

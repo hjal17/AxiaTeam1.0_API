@@ -11,6 +11,7 @@ namespace AxiaTeam1._0.Data
         BackLog create(BackLog b);
         BackLog Get(int id);
         List<BackLog> GetAll();
-         BackLog editBackLog(BackLog b);        
+         BackLog editBackLog(BackLog b);
+        BackLog getProjectBacklog(int projectId);
     }
 }

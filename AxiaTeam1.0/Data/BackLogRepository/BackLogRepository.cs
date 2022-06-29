@@ -40,9 +40,15 @@ namespace AxiaTeam1._0.Data.BackLogRepository
             return _backLogContext.BackLogs.FirstOrDefault(b => b.Id == id);
         }
 
+
         public List<BackLog> GetAll()
         {
-            throw new NotImplementedException();
+            return _backLogContext.BackLogs.ToList();
+        }
+
+        public BackLog getProjectBacklog(int projectId)
+        {
+            return _backLogContext.BackLogs.FirstOrDefault(b => b.ProjectId == projectId);
         }
     }
 }

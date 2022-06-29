@@ -22,6 +22,15 @@ namespace AxiaTeam1._0.Data
 
         }
 
+     
+            public void Delete(int id)
+            {
+                var project = _projectContext.Projects.FirstOrDefault(p => p.Id == id);
+                _projectContext.Projects.Remove(project);
+                _projectContext.SaveChanges();
+            }
+        
+
         public Project Get(int id)
         {
             return _projectContext.Projects.FirstOrDefault(p => p.Id == id);

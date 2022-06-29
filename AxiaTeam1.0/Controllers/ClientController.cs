@@ -42,14 +42,14 @@ namespace AxiaTeam1._0.Controllers
         }
 
         [HttpGet]
-        public IActionResult allUsers()
+        public IActionResult allClients()
         {
             try
             {
   
-                var users = _repository.getAll();
+                var clients= _repository.getAll();
 
-                return Ok(users);
+                return Ok(clients);
             }
             catch (Exception e)
             {

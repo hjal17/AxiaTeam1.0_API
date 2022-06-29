@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace AxiaTeam1._0.Data.EquipeRepository
 {
-    interface IEquipeRepository
+   public interface IEquipeRepository
     {
 
         Equipe Create(Equipe equipe);
 
         Equipe GetById(int id);
         List<Equipe> getAll();
-        Equipe EditClient(Equipe equipe);
+        Equipe editEquipe(Equipe equipe);
 
         void Delete(int id);
     }

@@ -31,6 +31,12 @@ namespace AxiaTeam1._0.Data.Tache
             return _tacheContext.Taches.ToList();
         }
 
-       
+     
+
+        List<TTache> ITacheRepository.getUserStoryTaches(int usId)
+        {
+            var taches = _tacheContext.Taches.Where(t => t.UserStoryId == usId).ToList();
+            return taches;
+        }
     }
 }

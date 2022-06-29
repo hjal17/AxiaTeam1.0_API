@@ -48,9 +48,9 @@ namespace AxiaTeam1._0.Controllers
         [HttpPost("create")]
         public async Task<IActionResult> Create(Project p)
         {
-            var jwt = Request.Cookies["jwt"];
-            var token = _jwtService.Verify(jwt);
-            int userId = int.Parse(token.Issuer);
+            //var jwt = Request.Cookies["jwt"];
+           // var token = _jwtService.Verify(jwt);
+           // int userId = int.Parse(token.Issuer);
             var project = new Project
             {
                 Name = p.Name,
@@ -59,7 +59,8 @@ namespace AxiaTeam1._0.Controllers
                 DateDebut = p.DateDebut,
                 DateLimite = p.DateLimite,
                 TempEstimer = p.TempEstimer,
-                UserId = userId
+                UserId = p.UserId,
+                ClientId = p.ClientId
 
         };
            
@@ -73,7 +74,29 @@ namespace AxiaTeam1._0.Controllers
             return Ok(project);
         }
 
-       
+        [HttpDelete("{id}")]
+        public IActionResult DeleteClient(int id)
+        {
+            try
+            {
+                var project = _projectRepository.Get(id);
+
+                if (project == null)
+                {
+                    return NotFound($"project with Id = {id} not found");
+                }
+                _projectRepository.Delete(id);
+
+                return Ok(new { message = "succes" });
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    "Error deleting data");
+            }
+        }
+
+
 
 
     }

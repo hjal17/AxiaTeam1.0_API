@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using BCrypt;
 using AxiaTeam1._0.Helpers;
 using System.Security.Claims;
+using Hanssens.Net;
 
 namespace AxiaTeam1._0.Controllers
 {
@@ -53,14 +54,40 @@ namespace AxiaTeam1._0.Controllers
             {
                 return BadRequest(new { message = "Email introubable" });
             }
+ 	    else if (user.Role == null)
+            {
+                return BadRequest(new { message = "your account not approuved yet " });
+            }
             else if (!BCrypt.Net.BCrypt.Verify(dto.Password, user.Password))
             {
                 return BadRequest(new { message ="password incorrect" });
             }
+            var config = new LocalStorageConfiguration()
+            {
+                AutoLoad=true,
+                AutoSave=true,
+               
+                /*
+                 bool AutoLoad { get; set; }
+        bool AutoSave { get; set; }
+        bool EnableEncryption { get; set; }
+        string EncryptionSalt { get; set; }
+        string Filename { get; set; }
+        bool ReadOnly { get; set; }
+                 */
+
+                // see the section "Configuration" further on
+            };
+
+            var storage = new LocalStorage(config);
 
             var jwt = _jwtService.generate(user.Id);
+            storage.Store("user", user);
+            storage.Store("token", jwt);
+            
             Response.Cookies.Append("jwt", jwt, new CookieOptions { HttpOnly = true });
            
+
 
 
             return Ok(new
