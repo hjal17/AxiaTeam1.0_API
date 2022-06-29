@@ -34,6 +34,7 @@ namespace AxiaTeam1._0.Data
             modelBuilder.Entity<TTache>().HasOne(t => t.UserStory).WithMany(u => u.Taches);
 
             modelBuilder.Entity<Project>().HasOne(p => p.User).WithMany(u => u.Projects);
+            modelBuilder.Entity<Project>().HasOne(p => p.Equipe).WithMany(e => e.projects);
             modelBuilder.Entity<Project>().HasOne(p => p.Client).WithMany(c => c.Projects);
 
             //Relation equipe-developpeur
