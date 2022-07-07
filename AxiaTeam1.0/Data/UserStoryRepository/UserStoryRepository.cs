@@ -21,6 +21,13 @@ namespace AxiaTeam1._0.Data.UserStoryRepository
             return us;
         }
 
+        public void delete(int id)
+        {
+            var userStory = _userstoryContext.UserStorys.FirstOrDefault(u => u.Id == id);
+            _userstoryContext.UserStorys.Remove(userStory);
+            _userstoryContext.SaveChanges();
+        }
+
         public UserStory edit(UserStory us)
         {
             var userStory = _userstoryContext.UserStorys.FirstOrDefault(u => u.Id == us.Id);

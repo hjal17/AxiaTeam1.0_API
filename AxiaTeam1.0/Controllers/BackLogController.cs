@@ -29,6 +29,14 @@ namespace AxiaTeam1._0.Controllers
                 return NotFound();
             return Ok(backLog);
         }
+        [HttpGet("projectId={id}")]
+        public ActionResult getByProjectId(int id)
+        {
+            var backLog = _backlogRepository.getProjectBacklog(id);
+            if (backLog == null)
+                return NotFound();
+            return Ok(backLog);
+        }
 
         [HttpPost("create")]
         public async Task<IActionResult> Create(BackLog b)
@@ -67,6 +75,28 @@ namespace AxiaTeam1._0.Controllers
                     "Error updating data");
             }
 
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult deleteBacklog(int id)
+        {
+            try
+            {
+                var backlogToDelete = _backlogRepository.Get(id);
+
+                if (backlogToDelete == null)
+                {
+                    return NotFound($"Backlog with Id = {id} not found");
+                }
+                _backlogRepository.delete(id);
+
+                return Ok(new { message = "succes" });
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    "Error deleting data");
+            }
         }
     }
 }

@@ -56,5 +56,27 @@ namespace AxiaTeam1._0.Controllers
             var project = _userStoryRepository.GetAll(id);
             return Ok(project);
         }
+
+        [HttpDelete("{id}")]
+        public IActionResult deleteBacklog(int id)
+        {
+            try
+            {
+                var userStory = _userStoryRepository.Get(id);
+
+                if (userStory == null)
+                {
+                    return NotFound($"userStory with Id = {id} not found");
+                }
+                _userStoryRepository.delete(id);
+
+                return Ok(new { message = "succes" });
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    "Error deleting data");
+            }
+        }
     }
 }

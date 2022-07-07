@@ -13,5 +13,6 @@ namespace AxiaTeam1._0.Data
         List<UserStory> GetAll(int backlogId);
 
         UserStory edit(UserStory us);
+        void delete(int id);
     }
 }

@@ -22,6 +22,13 @@ namespace AxiaTeam1._0.Data.BackLogRepository
             return b;
         }
 
+        public void delete(int backlogId)
+        {
+            var backLog = _backLogContext.BackLogs.FirstOrDefault(b => b.Id == backlogId);
+            _backLogContext.BackLogs.Remove(backLog);
+            _backLogContext.SaveChanges();
+        }
+
         public BackLog editBackLog(BackLog newBacklog)
         {
             var backLog = _backLogContext.BackLogs.FirstOrDefault(b => b.Id == newBacklog.Id);
@@ -46,9 +53,9 @@ namespace AxiaTeam1._0.Data.BackLogRepository
             return _backLogContext.BackLogs.ToList();
         }
 
-        public BackLog getProjectBacklog(int projectId)
+        public List<BackLog> getProjectBacklog(int projectId)
         {
-            return _backLogContext.BackLogs.FirstOrDefault(b => b.ProjectId == projectId);
+            return _backLogContext.BackLogs.Where(b => b.ProjectId == projectId).ToList();
         }
     }
 }
