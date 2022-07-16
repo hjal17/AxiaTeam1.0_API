@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
+using Microsoft.AspNetCore.Http;
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace AxiaTeam1._0.Controllers
@@ -37,6 +37,38 @@ namespace AxiaTeam1._0.Controllers
             if (tache == null)
                 return NotFound();
             return Ok(tache);
+        }
+
+        [HttpGet("userstoryId={id}")]
+        public IActionResult GetUserStoryTaches(int id)
+        {
+            var tache = _tacheRepository.getUserStoryTaches(id);
+            if (tache == null)
+                return NotFound();
+            return Ok(tache);
+        }
+
+
+        [HttpDelete("{id}")]
+        public IActionResult DeleteClient(int id)
+        {
+            try
+            {
+                var taskToDelete = _tacheRepository.Get(id);
+
+                if (taskToDelete == null)
+                {
+                    return NotFound($"task with Id = {id} not found");
+                }
+                _tacheRepository.delete(id);
+
+                return Ok(new { message = "succes" });
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    "Error deleting data");
+            }
         }
 
         [HttpPost("create")]

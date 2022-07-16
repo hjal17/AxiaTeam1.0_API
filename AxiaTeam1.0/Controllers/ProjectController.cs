@@ -74,6 +74,13 @@ namespace AxiaTeam1._0.Controllers
             return Ok(project);
         }
 
+        [HttpGet("equipe/{id}")]
+        public ActionResult get(int id)
+        {
+            var project = _projectRepository.GetAll(id);
+            return Ok(project);
+        }
+
         [HttpDelete("{id}")]
         public IActionResult DeleteClient(int id)
         {

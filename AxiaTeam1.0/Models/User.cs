@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 namespace AxiaTeam1._0.Models
 {
@@ -16,6 +17,13 @@ namespace AxiaTeam1._0.Models
         public string Role { get; set; }
         [JsonIgnore] public string Password { get; set; }
 
+        public string? Location { get; set; }
+     
+
+       
+        public int? Phone { get; set; }
+
+        public String? ProfileImage { get; set; }
         public List<Project> Projects { get; set; }
         public List<TacheAFait> tacheAFait { get; set; }
 

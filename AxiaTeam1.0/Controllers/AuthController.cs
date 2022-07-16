@@ -62,28 +62,12 @@ namespace AxiaTeam1._0.Controllers
             {
                 return BadRequest(new { message ="password incorrect" });
             }
-            var config = new LocalStorageConfiguration()
-            {
-                AutoLoad=true,
-                AutoSave=true,
-               
-                /*
-                 bool AutoLoad { get; set; }
-        bool AutoSave { get; set; }
-        bool EnableEncryption { get; set; }
-        string EncryptionSalt { get; set; }
-        string Filename { get; set; }
-        bool ReadOnly { get; set; }
-                 */
+         
 
-                // see the section "Configuration" further on
-            };
-
-            var storage = new LocalStorage(config);
+           
 
             var jwt = _jwtService.generate(user.Id);
-            storage.Store("user", user);
-            storage.Store("token", jwt);
+          
             
             Response.Cookies.Append("jwt", jwt, new CookieOptions { HttpOnly = true });
            
@@ -168,6 +152,29 @@ namespace AxiaTeam1._0.Controllers
                     return NotFound($"user with Id = {id} not found");
 
                 return  Ok(_repository.editUser(user));
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    "Error updating data");
+            }
+
+        }
+
+        [HttpPut("editprofile/{id}")]
+        public IActionResult updateProfile(int id, User user)
+        {
+            try
+            {
+                if (id != user.Id)
+                    return BadRequest("user ID mismatch");
+
+                var userToUpdate = _repository.GetById(id);
+
+                if (userToUpdate == null)
+                    return NotFound($"user with Id = {id} not found");
+
+                return Ok(_repository.editProfile(user));
             }
             catch (Exception)
             {

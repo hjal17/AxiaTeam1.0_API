@@ -20,6 +20,13 @@ namespace AxiaTeam1._0.Data.Tache
             return (tache);
         }
 
+        public void delete(int id)
+        {
+            var tache = _tacheContext.Taches.FirstOrDefault(t => t.Id == id);
+            _tacheContext.Taches.Remove(tache);
+            _tacheContext.SaveChanges();
+        }
+
         public TTache Get(int id)
         {
             return _tacheContext.Taches.FirstOrDefault(t => t.Id == id);

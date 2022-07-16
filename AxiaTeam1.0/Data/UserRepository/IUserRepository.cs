@@ -13,6 +13,7 @@ namespace AxiaTeam1._0.Data
         Models.User GetById(int id);
         List<User> getAll(int id);
         User editUser(User user);
+        User editProfile(User user);
         void Delete(int id);
         User editPassword(User user);
     }

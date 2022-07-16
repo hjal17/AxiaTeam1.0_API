@@ -40,5 +40,10 @@ namespace AxiaTeam1._0.Data
         {
             return _projectContext.Projects.ToList();
         }
+
+        public List<Project> GetAll(int equipeId)
+        {
+            return _projectContext.Projects.Where(p=>p.EquipeId==equipeId).ToList();
+        }
     }
 }

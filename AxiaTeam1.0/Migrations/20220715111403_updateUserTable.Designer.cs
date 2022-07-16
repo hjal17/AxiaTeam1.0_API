@@ -4,14 +4,16 @@ using AxiaTeam1._0.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AxiaTeam1._0.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class UserContextModelSnapshot : ModelSnapshot
+    [Migration("20220715111403_updateUserTable")]
+    partial class updateUserTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -127,7 +129,7 @@ namespace AxiaTeam1._0.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("EquipeId")
+                    b.Property<int>("EquipeId")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
@@ -223,6 +225,9 @@ namespace AxiaTeam1._0.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<DateTime?>("Birthday")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(450)");
 
@@ -230,6 +235,9 @@ namespace AxiaTeam1._0.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("OrganizationName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Password")
@@ -313,7 +321,9 @@ namespace AxiaTeam1._0.Migrations
 
                     b.HasOne("AxiaTeam1._0.Models.Equipe", "Equipe")
                         .WithMany("projects")
-                        .HasForeignKey("EquipeId");
+                        .HasForeignKey("EquipeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("AxiaTeam1._0.Models.User", "User")
                         .WithMany("Projects")

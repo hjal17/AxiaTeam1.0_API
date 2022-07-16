@@ -17,7 +17,8 @@ namespace AxiaTeam1._0.Models
 
         public int UserId { get; set; }
         public User User { get; set; }
-        public int EquipeId { get; set; }
+
+        public int? EquipeId { get; set; }
         public Equipe Equipe { get; set; }
         public int ClientId { get; set; }
         public Client Client { get; set; }

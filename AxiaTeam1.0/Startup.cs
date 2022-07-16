@@ -40,10 +40,10 @@ namespace AxiaTeam1._0
         public void ConfigureServices(IServiceCollection services)
         {
          
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+           services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddSession();
             services.AddMvc();
-
+          
             services.AddCors();
             services.AddDbContext<DataContext>(opt =>opt.UseSqlServer(Configuration.GetConnectionString("Default")));
           
@@ -79,6 +79,7 @@ namespace AxiaTeam1._0
             app.UseHttpsRedirection();
             app.UseSession();
             app.UseRouting();
+            
             app.UseCors(options => options         
                                     .WithOrigins("http://localhost:3000", "http://localhost:8080", "http://localhost:4200")
                                     .AllowAnyHeader()
@@ -91,6 +92,7 @@ namespace AxiaTeam1._0
             
             app.UseEndpoints(endpoints =>
             {
+               
                 endpoints.MapControllers();
             });
            

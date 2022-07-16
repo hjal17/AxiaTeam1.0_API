@@ -37,6 +37,8 @@ namespace AxiaTeam1._0.Data
             return user;
         }
 
+      
+
         public User editUser(User dtoUser)
         {
             var user = _context.Users.FirstOrDefault(u => u.Id == dtoUser.Id);
@@ -49,6 +51,20 @@ namespace AxiaTeam1._0.Data
                 user.Role = dtoUser.Role;
             _context.SaveChanges();
             return user;
+        }
+
+        public User editProfile(User user)
+        {
+            var userToEdit = _context.Users.FirstOrDefault(u => u.Id == user.Id);
+            userToEdit.Name = user.Name;
+            userToEdit.Email = user.Email;
+                
+            userToEdit.Location = user.Location;
+            userToEdit.Phone = user.Phone;
+            
+            _context.SaveChanges();
+
+            return userToEdit;
         }
 
         public List<User> getAll(int id)

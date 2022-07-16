@@ -11,5 +11,6 @@ namespace AxiaTeam1._0.Data.Tache
         TTache Get(int id);
         List<TTache> GetAll();
         List<TTache> getUserStoryTaches(int usId);
+        void delete(int id);
     }
 }

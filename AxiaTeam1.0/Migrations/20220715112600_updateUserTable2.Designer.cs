@@ -4,14 +4,16 @@ using AxiaTeam1._0.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AxiaTeam1._0.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class UserContextModelSnapshot : ModelSnapshot
+    [Migration("20220715112600_updateUserTable2")]
+    partial class updateUserTable2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -127,7 +129,7 @@ namespace AxiaTeam1._0.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("EquipeId")
+                    b.Property<int>("EquipeId")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
@@ -313,7 +315,9 @@ namespace AxiaTeam1._0.Migrations
 
                     b.HasOne("AxiaTeam1._0.Models.Equipe", "Equipe")
                         .WithMany("projects")
-                        .HasForeignKey("EquipeId");
+                        .HasForeignKey("EquipeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("AxiaTeam1._0.Models.User", "User")
                         .WithMany("Projects")
