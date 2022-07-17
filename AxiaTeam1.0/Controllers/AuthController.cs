@@ -11,6 +11,7 @@ using BCrypt;
 using AxiaTeam1._0.Helpers;
 using System.Security.Claims;
 using Hanssens.Net;
+using Microsoft.AspNetCore.SignalR;
 
 namespace AxiaTeam1._0.Controllers
 {
@@ -21,17 +22,20 @@ namespace AxiaTeam1._0.Controllers
         
         private readonly IUserRepository _repository ;
         private readonly JwtService _jwtService;
+       
         public AuthController(IUserRepository repository, JwtService jwtService)
         {
             _repository = repository;
             _jwtService = jwtService;
+        
         }
 
         [HttpPost("register")]
-        public IActionResult Register(RegisterDto dto)
+        public async Task<IActionResult> Register(RegisterDto dto)
         {
 
-            var user = new Models.User {
+            var user = new Models.User
+            {
                 Name = dto.Name,
                 Email = dto.Email,
                 Password = BCrypt.Net.BCrypt.HashPassword(dto.Password)
@@ -40,8 +44,8 @@ namespace AxiaTeam1._0.Controllers
             {
                 user.Role = dto.Role;
             }
-                
 
+            
             return Created("succes", _repository.Create(user));
 
         }

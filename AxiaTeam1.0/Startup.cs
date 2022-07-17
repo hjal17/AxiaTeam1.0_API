@@ -46,8 +46,9 @@ namespace AxiaTeam1._0
           
             services.AddCors();
             services.AddDbContext<DataContext>(opt =>opt.UseSqlServer(Configuration.GetConnectionString("Default")));
-          
+            services.AddSignalRCore();
             services.AddControllers();
+            services.AddSignalR();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IClientRepository, ClientRepository>();
             services.AddScoped<IProjectRepository, ProjectRepository>();
@@ -94,6 +95,7 @@ namespace AxiaTeam1._0
             {
                
                 endpoints.MapControllers();
+                endpoints.MapHub<ChatHub>("/pushNotification");
             });
            
           
